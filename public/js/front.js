@@ -2120,9 +2120,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SinglePostComponent',
+  name: "SinglePostComponent",
   data: function data() {
     return {
       post: null
@@ -2134,6 +2133,11 @@ __webpack_require__.r(__webpack_exports__);
     var slug = this.$route.params.slug;
     axios.get("/api/posts/".concat(slug)).then(function (response) {
       _this.post = response.data;
+    })["catch"](function (error) {
+      //handle errors
+      _this.$router.push({
+        name: "page-404"
+      });
     });
   }
 });
@@ -19647,28 +19651,32 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: "history",
   routes: [{
-    path: '/',
-    name: 'home',
+    path: "/",
+    name: "home",
     meta: {
-      nome: 'Clelia'
+      nome: "Clelia"
     },
     component: _pages_HomeComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
-    path: '/about',
-    name: 'about',
+    path: "/about",
+    name: "about",
     component: _pages_AboutComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
-    path: '/posts',
-    name: 'posts',
+    path: "/posts",
+    name: "posts",
     component: _pages_PostsComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
-    path: '/contact',
-    name: 'contact',
+    path: "/contact",
+    name: "contact",
     component: _pages_ContactComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
-    path: '/posts/:slug',
-    name: 'single-post',
+    path: "/posts/:slug",
+    name: "single-post",
     component: _pages_SinglePostComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: "*",
+    name: "page-404",
+    component: NotFoundComponent
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
